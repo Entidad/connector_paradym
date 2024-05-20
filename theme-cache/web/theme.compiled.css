@@ -24901,15 +24901,13 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   /* Table Content */
   /* Pseudo Row, to target this object please use .tr > .td or .tr > div */
   /* Column Header */
+  /* If Column Header has filter */
   /* Column selector for hidable columns */
   /* Column content */
 }
 .table .table-content {
   display: grid;
   position: relative;
-}
-.table .table-content.infinite-loading {
-  overflow-y: scroll;
 }
 .table .tr {
   display: contents;
@@ -24922,17 +24920,41 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   border-width: 0;
   border-color: #ced0d3;
   padding: 16px;
-  position: -webkit-sticky;
-  /* Safari */
-  position: sticky;
   top: 0;
-  z-index: 1;
   min-width: 0;
+  position: relative;
   /* Clickable column header (Sortable) */
   /* Column resizer when column is resizable */
   /* Content of the column header */
   /* Header text */
   /* Header filter */
+}
+.table .th.dragging {
+  opacity: 0.5;
+}
+.table .th.dragging.dragging-over-self {
+  opacity: 0.8;
+}
+.table .th.drop-after:after, .table .th.drop-before:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: rgba(10, 19, 37, 0.8);
+  z-index: 1;
+}
+.table .th.drop-before:after {
+  left: 0;
+}
+.table .th.drop-before:not(:first-child):after {
+  transform: translateX(-50%);
+}
+.table .th.drop-after:after {
+  right: 0;
+}
+.table .th.drop-after:not(:last-child):after {
+  transform: translateX(50%);
 }
 .table .th .clickable {
   cursor: pointer;
@@ -24958,16 +24980,11 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   flex-grow: 1;
   align-self: stretch;
   min-width: 0;
-  padding-left: 4px;
-  margin-left: -4px;
-  /* Styles while dragging another column */
 }
-.table .th .column-container.dragging {
-  border-left: 4px solid rgba(10, 19, 37, 0.8);
-  padding-left: 0;
+.table .th .column-container:not(:has(.filter)) .column-header {
+  height: 100%;
 }
 .table .th .column-header {
-  height: 100%;
   margin: 1px 1px -2px;
   display: flex;
   align-items: baseline;
@@ -24977,6 +24994,8 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   flex-grow: 1;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-wrap: nowrap;
+  align-self: center;
 }
 .table .th .column-header svg {
   margin-left: 8px;
@@ -25007,12 +25026,28 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   flex: unset;
   min-width: unset;
 }
+.table:has(.th .column-container .filter:not(:empty)) .th {
+  /*adjust filter-selector icon to be mid-bottom aligned */
+  /*adjust checkbox toggle to be mid-bottom aligned */
+}
+.table:has(.th .column-container .filter:not(:empty)) .th.column-selector {
+  padding: 16px 0;
+}
+.table:has(.th .column-container .filter:not(:empty)) .th .column-selector-content {
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+.table:has(.th .column-container .filter:not(:empty)) .th.widget-datagrid-col-select {
+  align-items: flex-end;
+  padding-bottom: 27px;
+}
 .table .column-selector {
   padding: 0;
   /* Column content */
 }
 .table .column-selector .column-selector-content {
   align-self: center;
+  padding-right: 16px;
   /* Button containing the eye icon */
   /* List of columns to select */
 }
@@ -25020,13 +25055,11 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   /* 2px as path of icon's path is a bit bigger than outer svg */
   padding: 0;
   margin: 0;
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
 }
 .table .column-selector .column-selector-content .column-selector-button svg {
-  width: 14px;
-  height: 14px;
-  margin: 8px;
+  margin: 7px;
 }
 .table .column-selector .column-selector-content .column-selectors {
   position: absolute;
@@ -25066,11 +25099,16 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
   border-top-width: 1px;
   border-top-style: solid;
 }
-.table .td:focus {
-  outline: none;
+.table .td:focus-visible {
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+  outline-color: #264ae5;
 }
-.table .td > .td-text,
-.table .td * {
+.table .td.clickable {
+  cursor: pointer;
+}
+.table .td > .td-text {
   white-space: nowrap;
   word-break: break-word;
   text-overflow: ellipsis;
@@ -25096,19 +25134,10 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 .table .align-column-left {
   justify-content: flex-start;
 }
-.table .align-column-left span {
-  justify-content: flex-start;
-}
 .table .align-column-center {
   justify-content: center;
 }
-.table .align-column-center span {
-  justify-content: center;
-}
 .table .align-column-right {
-  justify-content: flex-end;
-}
-.table .align-column-right span {
   justify-content: flex-end;
 }
 
@@ -25185,6 +25214,14 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 
 .widget-datagrid.widget-datagrid-selection-method-click .tr.tr-selected .td {
   background-color: #e6eaff;
+}
+
+.widget-datagrid-col-select input:focus-visible {
+  outline-offset: 0;
+}
+
+.widget-datagrid-content {
+  overflow-y: auto;
 }
 
 /**
@@ -25278,12 +25315,20 @@ html div.dj_ios .widget-switch.auto .widget-switch-btn-wrapper.checked.widget-sw
 }
 
 .react-datepicker__day--in-range:not(.react-datepicker__day--range-start, .react-datepicker__day--range-end),
-.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range, .react-datepicker__day--selecting-range-start) {
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--in-range,
+.react-datepicker__day--selecting-range-start) {
   background-color: #eaeaea;
   color: #000;
 }
 .react-datepicker__day--in-range:not(.react-datepicker__day--range-start, .react-datepicker__day--range-end):hover,
-.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range, .react-datepicker__day--selecting-range-start):hover {
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--in-range,
+.react-datepicker__day--selecting-range-start):hover {
   background-color: #264ae5;
   color: #fff;
 }
@@ -25320,7 +25365,7 @@ Space between the fields and the popup
  */
 .react-datepicker-popper[data-placement^=bottom] {
   margin-top: unset;
-  padding-top: 8px;
+  padding-top: 0;
 }
 
 @font-face {
@@ -25466,7 +25511,6 @@ Space between the fields and the popup
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
-  overflow-x: hidden;
   max-height: 40vh;
   z-index: 102;
 }
@@ -25475,18 +25519,15 @@ Space between the fields and the popup
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05), 0 2px 16px 0 rgba(33, 43, 54, 0.08);
-  overflow-x: hidden;
   max-height: 40vh;
-  z-index: 102;
-}
-.dropdown-content-section + .dropdown-content-section {
-  border-top: 1px solid #e7e7e9;
+  z-index: 140;
 }
 
 .dropdown-footer {
   position: sticky;
   bottom: 0;
   background: inherit;
+  z-index: 50;
 }
 
 .dropdown-footer-item {
@@ -25504,6 +25545,7 @@ Space between the fields and the popup
 
 .dropdown-container {
   flex: 1;
+  position: relative;
 }
 .dropdown-container .dropdown-triggerer {
   caret-color: transparent;
@@ -25518,8 +25560,6 @@ Space between the fields and the popup
   width: 100%;
 }
 .dropdown-container .dropdown-list {
-  position: absolute;
-  width: max-content;
   left: 0;
   margin: 0 8px;
   padding: 0;
@@ -25558,10 +25598,6 @@ Space between the fields and the popup
   margin: 8px;
   font-weight: normal;
   width: calc(100% - 32px);
-}
-
-.date-filter-container {
-  z-index: 102;
 }
 
 /**
@@ -25640,10 +25676,10 @@ Icons
 * Specific styles for filters inside Data Grid 2
 **/
 div:not(.table-compact) > .table .th .filter-selector .filter-selectors {
-  margin: 0 16px;
+  margin: 0;
 }
 div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
-  margin: 0 16px;
+  margin: 0;
 }
 
 .table-compact .th {
@@ -25652,11 +25688,23 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
 .table-compact .th .filter-selectors {
   margin: 0 8px;
 }
+.table-compact:has(.th .column-container .filter:not(:empty)) .th.column-selector {
+  padding: 8px 0;
+}
+.table-compact:has(.th .column-container .filter:not(:empty)) .th.widget-datagrid-col-select {
+  padding-bottom: 19px;
+}
 .table-compact .td {
   padding: 8px;
 }
 .table-compact .dropdown-container .dropdown-list {
   margin: 0 8px;
+}
+.table-compact .column-selector {
+  /* Column content */
+}
+.table-compact .column-selector .column-selector-content {
+  padding-right: 8px;
 }
 
 .table-striped .tr:nth-child(odd) > .td {
@@ -25667,30 +25715,31 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
   background-color: #f5f6f6;
 }
 
-.table-bordered-all .th {
-  border-top-width: 1px;
-  border-top-style: solid;
+.table-bordered-all .th,
+.table-bordered-all .td {
   border-left-width: 1px;
   border-left-style: solid;
 }
-.table-bordered-all .th.column-selector {
+.table-bordered-all .th.column-selector,
+.table-bordered-all .td.column-selector {
   border-left-width: 0;
+}
+.table-bordered-all .th:last-child, .table-bordered-all .th.column-selector,
+.table-bordered-all .td:last-child,
+.table-bordered-all .td.column-selector {
   border-right-width: 1px;
   border-right-style: solid;
+}
+.table-bordered-all .th {
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 .table-bordered-all .td {
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-left-width: 1px;
-  border-left-style: solid;
 }
 .table-bordered-all .td.td-borders {
   border-top-width: 1px;
-}
-.table-bordered-all .td.column-selector {
-  border-left-width: 0;
-  border-right-width: 1px;
-  border-right-style: solid;
 }
 
 .table-bordered-horizontal .td {
@@ -25730,6 +25779,22 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
 .table-bordered-none .td.td-borders,
 .table-bordered-none .th.td-borders {
   border: 0;
+}
+
+.sticky-sentinel.container-stuck + .widget-datagrid-grid .th, .sticky-sentinel.container-stuck + .table .th {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  z-index: 50;
+}
+
+.widget-datagrid-content.infinite-loading {
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.table .table-content.infinite-loading {
+  overflow-y: scroll;
 }
 
 /* ==========================================================================
@@ -25916,6 +25981,7 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
 }
 .widget-gallery .widget-gallery-clickable:focus-visible {
   outline: 1px solid #264ae5;
+  outline-offset: -1px;
 }
 .widget-gallery:not(.widget-gallery-disable-selected-items-highlight) .widget-gallery-item.widget-gallery-clickable.widget-gallery-selected {
   background: #e6eaff;
@@ -25999,6 +26065,10 @@ div:not(.table-compact) > .table .th .dropdown-container .dropdown-list {
 }
 .widget-gallery .widget-gallery-row-span-12 {
   grid-row: span 12;
+}
+
+.widget-gallery-item-button {
+  width: inherit;
 }
 
 /* ==========================================================================
@@ -26189,6 +26259,10 @@ input[type=checkbox].three-state-checkbox + .control-label {
   flex: 1;
   font-size: 16px;
   margin: 0 8px;
+}
+.widget-tree-node .widget-tree-node-branch-header-icon-container {
+  display: flex;
+  align-items: center;
 }
 .widget-tree-node .widget-tree-node-body {
   padding-left: 24px;

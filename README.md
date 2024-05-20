@@ -17,10 +17,15 @@ This module is maintained in this GitHub repository
 - Encryption
 - JSONPath
 
+## Issues
+
+Please report any issues with the Paradym connector on [GitHub](https://github.com/Entidad/connector_paradym/issues).
+
 # Documentation
 
-This module supports Paradym API v1 [Paradym API Documentation](https://api.paradym.id/docs/
-Configuration)
+This module supports Paradym API v1
+
+https://api.paradym.id/docs/
 
 ## Configuration
 
