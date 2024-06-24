@@ -30,7 +30,7 @@ This module supports [Paradym API v1](https://paradym.id/reference?full)
 
 Note: Paradym offered two ways of managing your digital identity infrastructure:
 
-- API and Dashboard: Use Paradym to issue and verify SD-JWT credentials over OpenID4VC.
+- API and Dashboard: Use Paradym to issue and verify credentials (SD-JWT over OpenID4VC and DIDComm based)
 - Workflow builder *Deprecated*: Build custom workflows to automate your back-end.
 
 Since the Workflow builder has been deprecated this module will no longer enhance/develop features for the Workflow builder, instead, we are adding more support for the API endpoints exposed by Paradym.
