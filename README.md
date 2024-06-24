@@ -2,7 +2,7 @@
 
 Paradym is a workflow builder for developers that provides the actions, workflows and infrastructure you need to use verifiable credentials in your solution.
 
-This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://api.paradym.id/docs/
+This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://paradym.id/reference?full
 
 # Development
 
@@ -25,7 +25,7 @@ Please report any issues with the Paradym connector on [GitHub](https://github.c
 
 # Documentation
 
-This module supports [Paradym API v1](https://api.paradym.id/docs/)
+This module supports [Paradym API v1](https://paradym.id/reference?full)
 
 ## Configuration
 
