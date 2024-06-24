@@ -34,10 +34,8 @@ public class EnumerationFromString_AgentTriggerEvents extends CustomJavaAction<j
 	public java.lang.String executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-            
-                // Replace LogLevel.class by the proxy class for your Enumeration
 		Optional<Enum_AgentTrigger_Events> result = Misc.enumFromString(Enum_AgentTrigger_Events.class, toConvert);
-                return result.orElseThrow().name();
+		return result.orElseThrow().name();
 		// END USER CODE
 	}
 
