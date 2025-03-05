@@ -2,7 +2,7 @@
 
 With Paradym, you can set up digital identity infrastructure in minutes, so you can focus on integrating it into your application. The Paradym connector allows you to easily and quickly connect with the Paradym API for issuing, verifying and other identity actions in Mendix.
 
-This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://paradym.id/reference?full and is up to date with [Changelog December 19, 2024](https://paradym.id/changelog)
+This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://paradym.id/reference?full and is up to date with [Changelog February 11, 2025](https://paradym.id/changelog)
 
 # Development
 
