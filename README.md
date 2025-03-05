@@ -25,9 +25,54 @@ Please report any issues with the Paradym connector on [GitHub](https://github.c
 
 # Documentation
 
-This module supports [Paradym API v1](https://paradym.id/reference?full)
+This module supports [Paradym API v1](https://paradym.id/reference?full) which contains the following endpoints
+Supported API endpoints:
 
-- API and Dashboard: Use Paradym to issue and verify credentials (SD-JWT over OpenID4VC and DIDComm based)
+```
+/v1
+    /projects
+        /members
+            /add
+            /remove
+        /webhooks
+        /profiles/default
+        /templates
+            /credentials
+                /sd-jwt-vc
+                    /json-schema
+                    /unarchive
+                /anoncreds
+                    /json-schema
+                    /unarchive
+            /presentations
+        /dids
+        /trusted-entities
+        /issuance
+            /sd-jwt-vc
+        /revocation/batch
+        /openid4vc
+            /issuance
+                /offer
+            /verification
+                /request
+        /didcomm
+            /invitations
+                /receive
+                /create-connection
+            /connections
+            /issuance
+                /offer
+            /verification
+                /request
+            /mediators
+                /connections
+            /messaging
+                /basic/send
+                /custom/send
+```
+
+API and Dashboard: Use Paradym to issue and verify credentials (SD-JWT over OpenID4VC and DIDComm based)
+
 
 ## Configuration
 
