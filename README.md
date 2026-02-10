@@ -2,11 +2,11 @@
 
 With Paradym, you can set up digital identity infrastructure in minutes, so you can focus on integrating it into your application. The Paradym connector allows you to easily and quickly connect with the Paradym API for issuing, verifying and other identity actions in Mendix.
 
-This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://paradym.id/reference?full and is up to date with [Changelog July 10, 2025](https://paradym.id/changelog)
+This Paradym connector enables the usage of most of the Paradym API resources described in API documentation https://paradym.id/reference?full and is up to date with [Changelog November 27, 2025](https://paradym.id/changelog?page=2#Configurable%20verification%20data%20retention)
 
 # Development
 
-The connector_paradym module requires at least Mendix version [9.24.18](https://marketplace.mendix.com/link/studiopro/9.24.18).
+The connector_paradym module requires at least Mendix version [10.24.13](https://marketplace.mendix.com/link/studiopro/10.24.13).
 
 ## Maintenance
 
@@ -102,5 +102,6 @@ This module tries to follow the principle of least privilege, in which a user is
 
 # References
 
+- [Unmio platform](https://www.unmio.com) Safely communicate, coordinate services, and exchange sensitive information. No surveillance. No tracking.
 - [Farmworker Wallet OS](https://tac.openwallet.foundation/projects/fwos/) ecosystem. Although `connector_paradym` is not part of the Farmworker Wallet OS it is used in the reference projects to demonstrate how a Cloud Agent implementation with Mendix could be developed
 - [Paradym default workflows](https://github.com/Entidad/paradym-default-workflows). The Paradym documentation contains some example workflows, this repository contains the workflows definitions used as starting point for Entidad projects implementing Paradym (archived)
