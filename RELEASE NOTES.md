@@ -1,29 +1,84 @@
 # Work in Progress
+## New Resources & Methods
 
+POST /v1/projects/{projectId}
+
+GET, POST /v1/projects/{projectId}/attribute-providers
+GET, PUT, DELETE /v1/projects/{projectId}/attribute-providers/{attributeProviderId}
+
+GET, POST /v1/projects/{projectId}/authorization-servers
+GET, PUT, DELETE /v1/projects/{projectId}/authorization-servers/{authorizationServerId}
+
+GET, POST /v1/projects/{projectId}/certificates/csrs
+DELETE /v1/projects/{projectId}/certificates/csrs/{certificateSigningRequestId}
+POST /v1/projects/{projectId}/certificates/csrs/{certificateSigningRequestId}/import
+POST /v1/projects/{projectId}/certificates/{certificateId}/deactivate
+
+## Changes Existing Resources & Methods
+
+GET /v1/projects/{projectId}/certificates
+
+Params: filter[parentCertificateId] added (optional)
+Params: sort enum extended with parentCertificateId and -parentCertificateId
+
+POST /v1/projects/{projectId}/certificates
+
+Response: capabilities added, parentCertificateId added
+
+POST /v1/projects/{projectId}/certificates/{certificateId}/activate
+
+Response: capabilities added, parentCertificateId added
+
+POST /v1/projects/{projectId}/certificates/{certificateId}/revoke
+
+Response: capabilities added, parentCertificateId added
+
+
+GET /v1/projects/{projectId}/profiles/default
+
+Response: defaultLocale added, localization added, openId4VcVersion added, openId4VciRedirectUri added
+Response: did removed
+
+PUT /v1/projects/{projectId}/profiles/default
+
+Body: defaultLocale added (optional), localization added (optional), openId4VcVersion added (optional)
+Response: defaultLocale added, localization added, openId4VcVersion added, openId4VciRedirectUri added
+Response: did removed
+
+
+POST /v1/projects/{projectId}/templates/credentials/mdoc
+
+Body: attributeProviderId added (optional), authorization added (optional), localization added (optional)
+Response: attributeProviderId added, authorization added, localization added
+
+GET /v1/projects/{projectId}/templates/credentials/mdoc/{credentialTemplateId}
+
+Response: attributeProviderId added, authorization added, localization added
+
+PUT /v1/projects/{projectId}/templates/credentials/mdoc/{credentialTemplateId}
+
+Body: attributeProviderId added (optional), authorization added (optional), localization added (optional)
+Response: attributeProviderId added, authorization added, localization added
+
+
+POST /v1/projects/{projectId}/templates/credentials/sd-jwt-vc
+
+Body: attributeProviderId added (optional), authorization added (optional), localization added (optional)
+Response: attributeProviderId added, authorization added, localization added
+
+GET /v1/projects/{projectId}/templates/credentials/sd-jwt-vc/{credentialTemplateId}
+
+Response: attributeProviderId added, authorization added, localization added
+
+PUT /v1/projects/{projectId}/templates/credentials/sd-jwt-vc/{credentialTemplateId}
+
+Body: attributeProviderId added (optional), authorization added (optional), localization added (optional)
+Response: attributeProviderId added, authorization added, localization added
+
+## Mendix
 - Widgets updated to React mode ready widgets (DataGrid2, QR)
-- API updates
-    - Projects
-        - Add attributes openId4VcVersion, verificationDataAccess
-        - Change input parameter API_Projects_POST_v1, Project_Create from projectName (string) to ProjectApi [breaking]
-        - Add POST update project
-        - Rename Project_Create to Project_ProcessCreateUpdate [breaking]
-    - Profiles/default
-        - Add attributes openId4VcVersion
-        - Rename attributes AndroidApplicationId to androidBundleId and appleApplicationId to appleAppId [breaking]
-    - Authorization Servers
-        - Add methods 
-            GET retrieve authorization servers
-            POST create authorization server
-            GET retrieve authorization server
-            PUT update authorization server
-            DELETE delete authorization server
-    - Attribute Providers
-        - Add methods 
-            GET retrieve attribute providers
-            POST create attribute provider
-            GET retrieve attribute provider
-            PUT update attribute provider
-            DELETE delete attribute provider
+- Rename Project_Create to Project_ProcessCreateUpdate
+
 
 
 # Release version 4.0.0
