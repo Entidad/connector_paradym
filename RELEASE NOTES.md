@@ -61,9 +61,11 @@ Check
     attributes AndroidApplicationId to androidBundleId and appleApplicationId to appleAppId [breaking]
 
 ## Mendix
+
 - Widgets updated to React mode ready widgets (replaced DataGrid with DataGrid2, QR Code with QR)
 - Rename Project_Create to Project_ProcessCreateUpdate [breaking]
 - Change input parameter API_Projects_POST_v1, Project_Create from projectName (string) to ProjectApi [breaking]
+- Rename entity VerifierApi to IssuerVerifierApi [breaking]
 
 
 # Release version 4.0.0
