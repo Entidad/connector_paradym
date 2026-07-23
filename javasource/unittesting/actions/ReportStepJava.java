@@ -30,7 +30,7 @@ public class ReportStepJava extends UserAction<java.lang.Boolean>
 	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		TestManager.instance().reportStep(message);
+		TestManager.instance().executionContext().collectStep(message);
 		return true;
 		// END USER CODE
 	}

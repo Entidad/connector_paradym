@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "widgets": [
+    {
+      "sha-256": "902544f1102edda5d903569dc57973fee926d3e2f661dcd966d8f13c8faae21e",
+      "name": "Combobox",
+      "version": "2.7.2",
+      "appStoreVersionGuid": "f7375a1c-5648-4305-9539-fd273327138a"
+    },
+    {
+      "sha-256": "68344f56b25d45f9b8db15ea5f1de6fa74323c0011df11e3f27cec10ab5226d2",
+      "name": "Image",
+      "version": "1.4.3",
+      "appStoreVersionGuid": "1321ab1b-0826-4ebc-b041-bc5053b3d3f0"
+    },
+    {
+      "sha-256": "1ea469d9a8f95e0abaeb815058186ea030b43cdb58640878375a062ba8a5ca3f",
+      "name": "JSON",
+      "version": "1.3.0",
+      "appStoreVersionGuid": "44da059f-4074-49cf-a16c-0ae8cf0ff4b4"
+    },
+    {
+      "sha-256": "beed616285e1e3b987f75ad464fe834eba3cb3cd1fc6c2c6d5b15729711f9eef",
+      "name": "Qr",
+      "version": "2.1.0",
+      "appStoreVersionGuid": "9b4cefff-9a5d-448e-b0db-1be8dfef4d09"
+    },
+    {
+      "sha-256": "201ca3ed579f9133810072914895df816e34e9166b38e26a09bca4b1cd6958cb",
+      "name": "QRCodeWidget",
+      "version": "1.1.0",
+      "appStoreVersionGuid": "a49fc78e-f545-45a4-87d2-0dee28b29da6"
+    }
+  ]
+}
